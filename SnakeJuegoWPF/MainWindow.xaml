@@ -1,0 +1,81 @@
+﻿<Window x:Class="SnakeJuegoWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SnakeJuegoWPF"
+        mc:Ignorable="d"
+        Title="La cu cu culebritaaaa ssss " Height="500" Width="800"
+        MinWidth="300" MinHeight="300"
+        Background="{StaticResource BackgroundColor}"
+        Foreground="{StaticResource TextColor}"
+        FontFamily="{StaticResource MainFont}"
+        WindowStartupLocation="CenterScreen"
+        Icon="Assets/icon.ico"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        KeyDown="Window_KeyDown">
+
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="ScoreText"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Text="SCORE 0"
+               FontSize="22"
+               Margin="10" Foreground="#FF02063E" />
+
+            <Border x:Name="GridBorder"
+            Grid.Row="1"
+            BorderBrush="{StaticResource GridLineColor}"
+            BorderThickness="1.5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            RenderOptions.EdgeMode="Aliased"
+            Margin="20,0,20,20">
+
+                <UniformGrid x:Name="Gamegrid"
+                     Width="400"
+                     Height="400"
+                     Background="{StaticResource GridBackgroundColor}"
+                     SnapsToDevicePixels="True"
+                     RenderOptions.BitmapScalingMode="HighQuality">
+                </UniformGrid>
+            </Border>
+
+            <Border x:Name="Overlay"
+                    Grid.Row="1"
+                    Background="{StaticResource OverlayColor}"
+                    Width="{Binding Path=ActualWidth, ElementName=GridBorder}"
+                    Height="{Binding Path=ActualHeight, ElementName=GridBorder}"
+                    Margin="{Binding Path=Margin, ElementName=GridBorder}"
+                    RenderOptions.EdgeMode="Aliased">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock x:Name="OverlayText"
+                       Text="PULSA 'ESPACIO' PARA JUGAR"
+                       FontSize="22"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap"/>
+
+                    <!-- TextBox para ingresar el nombre -->
+                    <TextBox x:Name="txtNickname" Width="120" Height="25" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Visibility="Collapsed" />
+
+                    <!-- Button para guardar el puntaje -->
+                    <Button x:Name="buttonGuardarPuntaje" Content="Guardar Puntaje" Width="120" Height="25" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Click="GuardarPuntaje_Click" Visibility="Collapsed" />
+
+                </StackPanel>
+
+
+            </Border>
+            <TextBlock HorizontalAlignment="Left" Margin="-162,0,0,0" TextWrapping="Wrap" TextAlignment="Justify" Text="Guía la culebra para que coma y crezca tanto como sea posible." VerticalAlignment="Top" Height="49" Width="164" Grid.Row="1" FontFamily="Calisto MT" Foreground="#FF02063E"/>
+            <TextBlock HorizontalAlignment="Left" Margin="-162,49,0,0" TextWrapping="Wrap" TextAlignment="Justify" Text="Usa las 'flechitas' para moverte." VerticalAlignment="Top" Height="36" Width="164" Grid.Row="1" FontFamily="Calisto MT" Foreground="#FF02063E"/>
+            <TextBlock HorizontalAlignment="Left" Margin="-162,85,0,0" Grid.Row="1" TextWrapping="Wrap" Text="La velocidad aumentará cada que ingieras 2 de comida." VerticalAlignment="Top" Height="38" Width="164" FontFamily="Calisto MT" Foreground="#FF02063E"/>
+            <TextBlock Margin="-162,139,0,0" Grid.Row="1" TextWrapping="Wrap" Text="El juego termina si la culebra colisiona consigo misma o con el borde." VerticalAlignment="Top" Height="62" Width="164" HorizontalAlignment="Left" TextAlignment="Justify" FontFamily="Californian FB" Foreground="#FF02063E"/>
+        </Grid>
+    </Viewbox>
+</Window>
